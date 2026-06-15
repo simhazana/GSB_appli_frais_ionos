@@ -58,8 +58,8 @@ $nomConnecte = trim(($_SESSION['prenom'] ?? '') . ' ' . ($_SESSION['nom'] ?? '')
         <h1 style="margin:0;">
             <?= $isCompta ? 'Fiches Frais — tous les visiteurs' : 'Mes fiches frais' ?>
         </h1>
-        <a class="button" href="./dashboard">Dashboard</a>
-        <a class="button" href="./logout">Se déconnecter</a>
+        <a class="button" href="/index.php/dashboard">Dashboard</a>
+        <a class="button" href="/index.php/logout">Se déconnecter</a>
     </div>
 
     <a class="button add" href="/index.php/fichefrais/create">➕ Ajouter une fiche frais</a>

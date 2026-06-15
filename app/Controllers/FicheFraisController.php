@@ -514,4 +514,4 @@ public function validate($idvisiteur, $mois): void
 }
 
 }
-*\
+*/
