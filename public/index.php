@@ -162,190 +162,191 @@ $method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
 // -------------------- FALLBACKS MANUELS --------------------
 // (au cas où le Router n'accroche pas certaines regex)
 
-if (preg_match('#^/etat/([0-9]+)$#', $path, $m)) {
-    (new \Controllers\EtatController)->show((int)$m[1]);
-    exit;
-}
+// if (preg_match('#^/etat/([0-9]+)$#', $path, $m)) {
+//     (new \Controllers\EtatController)->show((int)$m[1]);
+//     exit;
+// }
 
-if (preg_match('#^/etat/([0-9]+)/edit$#', $path, $m)) {
-    $id = (int)$m[1];
-    if ($method === 'POST') {
-        (new \Controllers\EtatController)->update($id);
-    } else {
-        (new \Controllers\EtatController)->edit($id);
-    }
-    exit;
-}
+// if (preg_match('#^/etat/([0-9]+)/edit$#', $path, $m)) {
+//     $id = (int)$m[1];
+//     if ($method === 'POST') {
+//         (new \Controllers\EtatController)->update($id);
+//     } else {
+//         (new \Controllers\EtatController)->edit($id);
+//     }
+//     exit;
+// }
 
-if (preg_match('#^/etat/([0-9]+)/delete$#', $path, $m)) {
-    $id = (int)$m[1];
-    if ($method === 'POST') {
-        (new \Controllers\EtatController)->delete($id);
-    } else {
-        header('Location: /etat');
-    }
-    exit;
-}
+// if (preg_match('#^/etat/([0-9]+)/delete$#', $path, $m)) {
+//     $id = (int)$m[1];
+//     if ($method === 'POST') {
+//         (new \Controllers\EtatController)->delete($id);
+//     } else {
+//         header('Location: /etat');
+//     }
+//     exit;
+// }
 
-if (preg_match('#^/fraisForfait/([0-9]+)$#', $path, $m)) {
-    (new \Controllers\FraisForfaitController)->show((int)$m[1]);
-    exit;
-}
+// if (preg_match('#^/fraisForfait/([0-9]+)$#', $path, $m)) {
+//     (new \Controllers\FraisForfaitController)->show((int)$m[1]);
+//     exit;
+// }
 
-if (preg_match('#^/fraisForfait/([0-9]+)/edit$#', $path, $m)) {
-    $id = (int)$m[1];
-    if ($method === 'POST') {
-        (new \Controllers\FraisForfaitController)->update($id);
-    } else {
-        (new \Controllers\FraisForfaitController)->edit($id);
-    }
-    exit;
-}
+// if (preg_match('#^/fraisForfait/([0-9]+)/edit$#', $path, $m)) {
+//     $id = (int)$m[1];
+//     if ($method === 'POST') {
+//         (new \Controllers\FraisForfaitController)->update($id);
+//     } else {
+//         (new \Controllers\FraisForfaitController)->edit($id);
+//     }
+//     exit;
+// }
 
-if (preg_match('#^/fraisForfait/([0-9]+)/delete$#', $path, $m)) {
-    $id = (int)$m[1];
-    if ($method === 'POST') {
-        (new \Controllers\FraisForfaitController)->delete($id);
-    } else {
-        header('Location: /fraisForfait');
-    }
-    exit;
-}
+// if (preg_match('#^/fraisForfait/([0-9]+)/delete$#', $path, $m)) {
+//     $id = (int)$m[1];
+//     if ($method === 'POST') {
+//         (new \Controllers\FraisForfaitController)->delete($id);
+//     } else {
+//         header('Location: /fraisForfait');
+//     }
+//     exit;
+// }
 
-if (preg_match('#^/fraisHorsForfait/([0-9]+)$#', $path, $m)) {
-    (new \Controllers\FraisHorsForfaitController)->show((int)$m[1]);
-    exit;
-}
+// if (preg_match('#^/fraisHorsForfait/([0-9]+)$#', $path, $m)) {
+//     (new \Controllers\FraisHorsForfaitController)->show((int)$m[1]);
+//     exit;
+// }
 
-if (preg_match('#^/fraisHorsForfait/([0-9]+)/edit$#', $path, $m)) {
-    $id = (int)$m[1];
-    if ($method === 'POST') {
-        (new \Controllers\FraisHorsForfaitController)->update($id);
-    } else {
-        (new \Controllers\FraisHorsForfaitController)->edit($id);
-    }
-    exit;
-}
+// if (preg_match('#^/fraisHorsForfait/([0-9]+)/edit$#', $path, $m)) {
+//     $id = (int)$m[1];
+//     if ($method === 'POST') {
+//         (new \Controllers\FraisHorsForfaitController)->update($id);
+//     } else {
+//         (new \Controllers\FraisHorsForfaitController)->edit($id);
+//     }
+//     exit;
+// }
 
-if (preg_match('#^/fraisHorsForfait/([0-9]+)/delete$#', $path, $m)) {
-    $id = (int)$m[1];
-    if ($method === 'POST') {
-        (new \Controllers\FraisHorsForfaitController)->delete($id);
-    } else {
-        header('Location: /fraisHorsForfait');
-    }
-    exit;
-}
+// if (preg_match('#^/fraisHorsForfait/([0-9]+)/delete$#', $path, $m)) {
+//     $id = (int)$m[1];
+//     if ($method === 'POST') {
+//         (new \Controllers\FraisHorsForfaitController)->delete($id);
+//     } else {
+//         header('Location: /fraisHorsForfait');
+//     }
+//     exit;
+// }
 
-if (preg_match('#^/visiteur/([0-9]+)$#', $path, $m)) {
-    (new \Controllers\VisiteurController)->show((int)$m[1]);
-    exit;
-}
+// if (preg_match('#^/visiteur/([0-9]+)$#', $path, $m)) {
+//     (new \Controllers\VisiteurController)->show((int)$m[1]);
+//     exit;
+// }
 
-if (preg_match('#^/visiteur/([0-9]+)/edit$#', $path, $m)) {
-    $id = (int)$m[1];
-    if ($method === 'POST') {
-        (new \Controllers\VisiteurController)->update($id);
-    } else {
-        (new \Controllers\VisiteurController)->edit($id);
-    }
-    exit;
-}
+// if (preg_match('#^/visiteur/([0-9]+)/edit$#', $path, $m)) {
+//     $id = (int)$m[1];
+//     if ($method === 'POST') {
+//         (new \Controllers\VisiteurController)->update($id);
+//     } else {
+//         (new \Controllers\VisiteurController)->edit($id);
+//     }
+//     exit;
+// }
 
-if (preg_match('#^/visiteur/([0-9]+)/delete$#', $path, $m)) {
-    $id = (int)$m[1];
-    if ($method === 'POST') {
-        (new \Controllers\VisiteurController)->delete($id);
-    } else {
-        header('Location: /visiteur');
-    }
-    exit;
-}
+// if (preg_match('#^/visiteur/([0-9]+)/delete$#', $path, $m)) {
+//     $id = (int)$m[1];
+//     if ($method === 'POST') {
+//         (new \Controllers\VisiteurController)->delete($id);
+//     } else {
+//         header('Location: /visiteur');
+//     }
+//     exit;
+// }
 
-if (preg_match('#^/ligneFraisForfait/([0-9]+)$#', $path, $m)) {
-    (new \Controllers\LigneFraisForfaitController)->show((int)$m[1]);
-    exit;
-}
+// if (preg_match('#^/ligneFraisForfait/([0-9]+)$#', $path, $m)) {
+//     (new \Controllers\LigneFraisForfaitController)->show((int)$m[1]);
+//     exit;
+// }
 
-if (preg_match('#^/ligneFraisForfait/([0-9]+)/edit$#', $path, $m)) {
-    $id = (int)$m[1];
-    if ($method === 'POST') {
-        (new \Controllers\LigneFraisForfaitController)->update($id);
-    } else {
-        (new \Controllers\LigneFraisForfaitController)->edit($id);
-    }
-    exit;
-}
+// if (preg_match('#^/ligneFraisForfait/([0-9]+)/edit$#', $path, $m)) {
+//     $id = (int)$m[1];
+//     if ($method === 'POST') {
+//         (new \Controllers\LigneFraisForfaitController)->update($id);
+//     } else {
+//         (new \Controllers\LigneFraisForfaitController)->edit($id);
+//     }
+//     exit;
+// }
 
-if (preg_match('#^/ligneFraisForfait/([0-9]+)/delete$#', $path, $m)) {
-    $id = (int)$m[1];
-    if ($method === 'POST') {
-        (new \Controllers\LigneFraisForfaitController)->delete($id);
-    } else {
-        header('Location: /ligneFraisForfait');
-    }
-    exit;
-}
+// if (preg_match('#^/ligneFraisForfait/([0-9]+)/delete$#', $path, $m)) {
+//     $id = (int)$m[1];
+//     if ($method === 'POST') {
+//         (new \Controllers\LigneFraisForfaitController)->delete($id);
+//     } else {
+//         header('Location: /ligneFraisForfait');
+//     }
+//     exit;
+// }
 
-if (preg_match('#^/fichefrais/([^/]+)/([^/]+)/edit$#', $path, $m)) {
-    if ($method === 'POST') {
-        (new \Controllers\FicheFraisController)->update($m[1], $m[2]);
-    } else {
-        (new \Controllers\FicheFraisController)->edit($m[1], $m[2]);
-    }
-    exit;
-}
+// if (preg_match('#^/fichefrais/([^/]+)/([^/]+)/edit$#', $path, $m)) {
+//     if ($method === 'POST') {
+//         (new \Controllers\FicheFraisController)->update($m[1], $m[2]);
+//     } else {
+//         (new \Controllers\FicheFraisController)->edit($m[1], $m[2]);
+//     }
+//     exit;
+// }
 
-if (preg_match('#^/fichefrais/([^/]+)/([^/]+)/delete$#', $path, $m)) {
-    if ($method === 'POST') {
-        (new \Controllers\FicheFraisController)->delete($m[1], $m[2]);
-    } else {
-        header('Location: /fichefrais');
-    }
-    exit;
-}
+// if (preg_match('#^/fichefrais/([^/]+)/([^/]+)/delete$#', $path, $m)) {
+//     if ($method === 'POST') {
+//         (new \Controllers\FicheFraisController)->delete($m[1], $m[2]);
+//     } else {
+//         header('Location: /fichefrais');
+//     }
+//     exit;
+// }
 
-if (preg_match('#^/fichefrais/([^/]+)/([^/]+)/validate$#', $path, $m)) {
-    if ($method === 'POST') {
-        (new \Controllers\FicheFraisController)->validate($m[1], $m[2]);
-    } else { header('Location: /fichefrais'); }
-    exit;
-}
+// if (preg_match('#^/fichefrais/([^/]+)/([^/]+)/validate$#', $path, $m)) {
+//     if ($method === 'POST') {
+//         (new \Controllers\FicheFraisController)->validate($m[1], $m[2]);
+//     } else { header('Location: /fichefrais'); }
+//     exit;
+// }
 
-if (preg_match('#^/fichefrais/([^/]+)/([^/]+)/refuse$#', $path, $m)) {
-    if ($method === 'POST') {
-        (new \Controllers\FicheFraisController)->refuse($m[1], $m[2]);
-    } else { header('Location: /fichefrais'); }
-    exit;
-}
+// if (preg_match('#^/fichefrais/([^/]+)/([^/]+)/refuse$#', $path, $m)) {
+//     if ($method === 'POST') {
+//         (new \Controllers\FicheFraisController)->refuse($m[1], $m[2]);
+//     } else { header('Location: /fichefrais'); }
+//     exit;
+// }
 
-if (preg_match('#^/fichefrais/([^/]+)/([^/]+)/cloture$#', $path, $m)) {
-    if ($method === 'POST') {
-        (new \Controllers\FicheFraisController)->cloture($m[1], $m[2]);
-    } else { header('Location: /fichefrais'); }
-    exit;
-}
+// if (preg_match('#^/fichefrais/([^/]+)/([^/]+)/cloture$#', $path, $m)) {
+//     if ($method === 'POST') {
+//         (new \Controllers\FicheFraisController)->cloture($m[1], $m[2]);
+//     } else { header('Location: /fichefrais'); }
+//     exit;
+// }
 
-if (preg_match('#^/fichefrais/([^/]+)/([^/]+)/rembourse$#', $path, $m)) {
-    if ($method === 'POST') {
-        (new \Controllers\FicheFraisController)->rembourse($m[1], $m[2]);
-    } else { header('Location: /fichefrais'); }
-    exit;
-}
+// if (preg_match('#^/fichefrais/([^/]+)/([^/]+)/rembourse$#', $path, $m)) {
+//     if ($method === 'POST') {
+//         (new \Controllers\FicheFraisController)->rembourse($m[1], $m[2]);
+//     } else { header('Location: /fichefrais'); }
+//     exit;
+// }
 
-if (preg_match('#^/fichefrais/([^/]+)/([^/]+)/setetat-([0-9]+)$#', $path, $m)) {
-    if ($method === 'POST') {
-        (new \Controllers\FicheFraisController)->setEtat($m[1], $m[2], (int)$m[3]);
-    } else {
-        header('Location: /fichefrais');
-    }
-    exit;
-}
+// if (preg_match('#^/fichefrais/([^/]+)/([^/]+)/setetat-([0-9]+)$#', $path, $m)) {
+//     if ($method === 'POST') {
+//         (new \Controllers\FicheFraisController)->setEtat($m[1], $m[2], (int)$m[3]);
+//     } else {
+//         header('Location: /fichefrais');
+//     }
+//     exit;
+// }
 
-if (preg_match('#^/fichefrais/([^/]+)/([^/]+)$#', $path, $m)) {
-    (new \Controllers\FicheFraisController)->show((int)$m[1], (int)$m[2]);
-    exit;
-}
+// if (preg_match('#^/fichefrais/([^/]+)/([^/]+)$#', $path, $m)) {
+//     (new \Controllers\FicheFraisController)->show((int)$m[1], (int)$m[2]);
+//     exit;
+// }
+
 
 // -------------------- DISPATCH PRINCIPAL --------------------
 try {
