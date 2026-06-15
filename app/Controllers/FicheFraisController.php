@@ -14,8 +14,8 @@ final class FicheFraisController extends Controller
     {
         $this->requireAuth();
 
-        $ficheFrais = [];
-        $etats      = [];
+        //$ficheFrais = [];
+        //$etats      = [];
 
         try {
             if ($this->isComptable()) {

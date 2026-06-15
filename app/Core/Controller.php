@@ -34,7 +34,7 @@ abstract class Controller {
     }
 
     protected function requireAuth(): void {
-        if (empty($_SESSION['uid'])) $this->redirect('/');
+        if (empty($_SESSION['uid'])) $this->redirect('/index.php');
     }
 
     protected function requireComptable(): void {
