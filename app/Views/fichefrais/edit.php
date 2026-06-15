@@ -147,13 +147,13 @@
             <div class="flash"><?= htmlspecialchars($message) ?></div>
         <?php endif; ?>
 
-<form action="/PPE-main/public/fichefrais/<?= htmlspecialchars($ficheFrais['idVisiteur']) ?>/<?= htmlspecialchars($ficheFrais['mois']) ?>/edit" method="post">
+<form action="/PPE-main/public/fichefrais/<?= htmlspecialchars($ficheFrais['IDvisiteur']) ?>/<?= htmlspecialchars($ficheFrais['mois']) ?>/edit" method="post">
             <div class="card">
                 <div class="card-header">Informations de la fiche</div>
 
                 <div class="field">
                     <label>ID Visiteur</label>
-                    <input type="text" value="<?= htmlspecialchars($ficheFrais['idVisiteur']) ?>" disabled>
+                    <input type="text" value="<?= htmlspecialchars($ficheFrais['IDvisiteur']) ?>" disabled>
                 </div>
 
                 <div class="field">

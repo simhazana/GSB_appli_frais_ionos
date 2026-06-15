@@ -140,12 +140,11 @@
 <body>
     <div class="topbar">
         <h1 style="margin:0;">Liste des Visiteurs</h1>
-        <a class="button" href="/index.php/dashboard">Dashboard</a>
-        <a class="button" href="/index.php/logout">Se déconnecter</a>
-        <a class="button" href="/index.php/fraisForfait">Frais forfait</a>
+        <a class="button" href="./dashboard">Dashboard</a>
+        <a class="button" href="./logout">Se déconnecter</a>
     </div>
 
-    <a class="button" href="/index.php/visiteur/create">➕ Ajouter un état</a>
+    <a class="button" href="/index.php/visiteur/create">➕ Ajouter un visiteur</a>
 
     <?php if (!empty($message)): ?>
         <div class="flash"><?= htmlspecialchars($message) ?></div>
@@ -164,9 +163,8 @@
                     <th>Ville</th>
                     <th>Cp</th>
                     <th>Date d'embauche</th>
-                    <th>Login</th>
-                    <th>Mdp</th>
-                    <th>role</th>
+                    <th>Role</th>
+                    <th>Action</th>
 
 
                 </tr>
@@ -181,8 +179,6 @@
                         <td><?= htmlspecialchars((string)$vis['ville']) ?></td>
                         <td><?= htmlspecialchars((string)$vis['cp']) ?></td>
                         <td><?= htmlspecialchars((string)$vis['date_embauche']) ?></td>
-                        <td><?= htmlspecialchars((string)$vis['login']) ?></td>
-                        <td><?= htmlspecialchars((string)$vis['mdp']) ?></td>
                         <td><?= htmlspecialchars((string)$vis['role']) ?></td>
 
                         <td class="actions">

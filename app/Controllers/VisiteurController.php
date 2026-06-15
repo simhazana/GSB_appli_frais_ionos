@@ -10,7 +10,7 @@ final class VisiteurController extends Controller
     {
         // verifier si connecter sinon rediriger vers la page de connexion
         if (empty($_SESSION['uid'])) {
-            $this->redirect('/index.php/');
+            $this->redirect('/');
         }
 
         try {
@@ -32,7 +32,7 @@ final class VisiteurController extends Controller
 
  public function show($id): void
 {
-    if (empty($_SESSION['uid'])) $this->redirect('/index.php/');
+    if (empty($_SESSION['uid'])) $this->redirect('/');
 
     $id = (int)$id;
 
@@ -41,7 +41,7 @@ final class VisiteurController extends Controller
         if (!$visiteur) {
             http_response_code(404);
             $_SESSION['flash'] = 'Visiteur introuvable.';
-            $this->redirect('/index.php/visiteur');
+            $this->redirect('/visiteur');
             return;
         }
     } catch (\Throwable $e) {
@@ -61,7 +61,7 @@ final class VisiteurController extends Controller
 
  public function create(): void
     {
-        if (empty($_SESSION['uid'])) $this->redirect('/index.php/');
+       // if (empty($_SESSION['uid'])) $this->redirect('/');
 
         $this->render('visiteur/create', [
             'title'   => 'Créer un visiteur',
@@ -84,7 +84,7 @@ final class VisiteurController extends Controller
 
     public function store(): void
 {
-    if (empty($_SESSION['uid'])) $this->redirect('/index.php/');
+//if (empty($_SESSION['uid'])) $this->redirect('/');
 
     $nom = trim($_POST['nom'] ?? '');
     $prenom = trim($_POST['prenom'] ?? '');
@@ -167,7 +167,7 @@ final class VisiteurController extends Controller
             'role'=> $role
             ];
         $_SESSION['flash']  = 'Merci de corriger les erreurs du formulaire.';
-        $this->redirect('/index.php/visiteur/create');
+        $this->redirect('/visiteur/create');
     }
 
     try {
@@ -183,10 +183,10 @@ final class VisiteurController extends Controller
             $role
         );
         $_SESSION['flash'] = 'visiteur créé avec succès.';
-        $this->redirect('/index.php/visiteur/' . $id);
+        $this->redirect('/visiteur/' . $id);
     } catch (\Throwable $e) {
         $_SESSION['flash'] = 'Impossible de créer le visiteur.';
-        $this->redirect('/index.php/visiteur');
+        $this->redirect('/visiteur');
     }
 }
 
@@ -194,7 +194,7 @@ final class VisiteurController extends Controller
 // ---------- EDIT (GET) ----------
 public function edit($id): void
 {
-    if (empty($_SESSION['uid'])) $this->redirect('/index.php/');
+    if (empty($_SESSION['uid'])) $this->redirect('/');
 
     $id = (int)$id;
 
@@ -202,11 +202,11 @@ public function edit($id): void
         $visiteur = \Models\Visiteur::findById($id);
         if (!$visiteur) {
             $_SESSION['flash'] = "Visiteur introuvable.";
-            $this->redirect('/index.php/visiteur');
+            $this->redirect('/visiteur');
         }
     } catch (\Throwable $e) {
         $_SESSION['flash'] = "Erreur lors du chargement du visiteur.";
-        $this->redirect('/index.php/visiteur');
+        $this->redirect('/visiteur');
     }
 
     // remplissage auto
@@ -233,96 +233,90 @@ public function edit($id): void
 
 // ---------- UPDATE (POST) ----------
 public function update($id): void
-{
-    if (empty($_SESSION['uid'])) $this->redirect('/index.php/');
+    {
+        if (empty($_SESSION['uid'])) $this->redirect('/index.php/');
 
-    $id = (int)$id;
-    $nom = trim($_POST['nom'] ?? '');
-    $prenom = trim($_POST['prenom'] ?? '');
-    $adresse = trim($_POST['adresse'] ?? '');
-    $ville = trim($_POST['ville'] ?? '');
-    $cp = trim($_POST['cp'] ?? '');
-    $date_embauche = trim($_POST['date_embauche'] ?? '');
-    $login = trim($_POST['login'] ?? '');
-    //$mdp = trim($_POST['mdp'] ?? '');
+        $id = (int)$id;
+        $nom = trim($_POST['nom'] ?? '');
+        $prenom = trim($_POST['prenom'] ?? '');
+        $adresse = trim($_POST['adresse'] ?? '');
+        $ville = trim($_POST['ville'] ?? '');
+        $cp = trim($_POST['cp'] ?? '');
+        $date_embauche = trim($_POST['date_embauche'] ?? '');
+        $login = trim($_POST['login'] ?? '');
 
-    $errors = [];
+        $errors = [];
 
-  if ($nom === '') {
-        $errors['nom'] = 'Le nom est obligatoire.';
-    } 
-   
+        if ($nom === '') {
+            $errors['nom'] = 'Le nom est obligatoire.';
+        }
 
-    if ($prenom === '') {
-        $errors['prenom'] = 'Le prenom est obligatoire.';
+        if ($prenom === '') {
+            $errors['prenom'] = 'Le prenom est obligatoire.';
+        }
+
+        if ($adresse === '') {
+            $errors['adresse'] = 'Adresse obligatoire.';
+        }
+
+        if ($ville === '') {
+            $errors['ville'] = 'La ville est obligatoire.';
+        }
+
+        if ($cp === '') {
+            $errors['cp'] = 'Le code postal est obligatoire.';
+        }
+
+        if ($date_embauche === '') {
+            $errors['date_embauche'] = 'La date embauche est obligatoire.';
+        }
+
+        if ($login === '') {
+            $errors['login'] = 'Le login est obligatoire.';
+        }
+
+        if ($errors) {
+            $_SESSION['errors'] = $errors;
+            $_SESSION['old'] = [
+                'nom' => $nom,
+                'prenom' => $prenom,
+                'adresse' => $adresse,
+                'ville' => $ville,
+                'cp' => $cp,
+                'date_embauche' => $date_embauche,
+                'login' => $login
+                ];
+
+            $_SESSION['flash'] = "Merci de corriger les erreurs.";
+            $this->redirect("/index.php/visiteur/$id/edit");
+        }
+
+        try {
+            \Models\Visiteur::update(
+                $id,
+                $nom,
+                $prenom,
+                $adresse,
+                $ville,
+                $cp,
+                $date_embauche,
+                $login
+                );
+
+            $_SESSION['flash'] = "Visiteur modifié avec succès.";
+            $this->redirect("/index.php/visiteur/$id");
+        } catch (\Throwable $e) {
+            $_SESSION['flash'] = "Erreur lors de la mise à jour.";
+            $this->redirect("/index.php/visiteur");
+        }
     }
-
-    if ($adresse === '') {
-        $errors['adresse'] = 'Adresse obligatoire.';
-    }
-    
-    if ($ville === '') {
-        $errors['ville'] = 'La ville est obligatoire.';
-    } 
-
-    if ($cp === '') {
-        $errors['cp'] = 'Le code postal est obligatoire.';
-    } 
-
-    if ($date_embauche === '') {
-        $errors['date_embauche'] = 'La date embauche est obligatoire.';
-    } 
-    
-    if ($login === '') {
-        $errors['login'] = 'Le login est obligatoire.';
-    } 
-
-   /* if ($mdp === '') {
-        $errors['mdp'] = 'Le mdp est obligatoire.';
-    } */
-
-    if ($errors) {
-        $_SESSION['errors'] = $errors;
-        $_SESSION['old'] = [
-            'nom' => $nom,
-            'prenom' => $prenom,
-            'adresse' => $adresse,
-            'ville' => $ville,
-            'cp' => $cp,
-            'date_embauche' => $date_embauche,
-            'login' => $login
-            ];
-
-        $_SESSION['flash'] = "Merci de corriger les erreurs.";
-        $this->redirect("/visiteur/$id/edit");
-    }
-
-    try {
-        \Models\Visiteur::update(
-            $id,
-            $nom,
-            $prenom,
-            $adresse,
-            $ville,
-            $cp,
-            $date_embauche,
-            $login
-            );
-
-        $_SESSION['flash'] = "Visiteur modifié avec succès.";
-        $this->redirect("/visiteur/$id");
-    } catch (\Throwable $e) {
-        $_SESSION['flash'] = "Erreur lors de la mise à jour.";
-        $this->redirect("/visiteur");
-    }
-}
 
 
 
 public function delete($id): void
 {
     if (empty($_SESSION['uid'])) {
-        $this->redirect('/index.php/');
+        $this->redirect('/');
     }
 
     $id = (int)$id;
@@ -340,7 +334,7 @@ public function delete($id): void
         $_SESSION['flash'] = "Erreur lors de la suppression du visiteur.";
     }
 
-    $this->redirect('/index.php/visiteur');
+    $this->redirect('/visiteur');
 }
 
 

@@ -4,8 +4,83 @@ declare(strict_types=1);
 namespace Controllers;
 
 use Core\Controller;
-use Models\User;
+use Models\Visiteur;
 
+final class AuthController extends Controller {
+
+    private function log(string $msg, string $file = 'auth.log'): void {
+        @file_put_contents(__DIR__ . '/../../ppe_logs/' . $file, '[' . date('c') . '] ' . $msg . "\n", FILE_APPEND);
+    }
+
+    public function login(): void {
+        if (!empty($_SESSION['uid'])) { $this->redirect('/index.php/dashboard'); }
+        $this->render('login', [
+            'title' => 'Connexion',
+            'csrf'  => $this->csrfToken(),
+            'message' => $_SESSION['flash'] ?? '',
+        ]);
+        unset($_SESSION['flash']);
+    }
+
+    public function inscription(): void {
+        $this->render('visiteur/create', [
+            'title'   => 'Inscription',
+            'message' => $_SESSION['flash'] ?? '',
+            'old'     => [],
+            'errors'  => [],
+            'inscription' => true,
+        ]);
+        unset($_SESSION['flash']);
+    }
+
+    public function doLogin(): void {
+        if (!$this->checkCsrf($_POST['csrf'] ?? null)) { http_response_code(400); exit('CSRF'); }
+
+        $username = trim((string)($_POST['username'] ?? ''));
+        $password = (string)($_POST['password'] ?? '');
+
+        if ($username === '' || $password === '') {
+            $_SESSION['flash'] = 'Identifiants requis';
+            $this->redirect('/index.php/');
+        }
+
+        $user = Visiteur::findByUsername($username);
+        if (!$user || !password_verify($password, $user['mdp'])) {
+            $_SESSION['flash'] = 'Mauvais identifiant ou mot de passe';
+            $this->log("Echec connexion pour '$username'");
+            $this->redirect('/index.php/');
+        }
+
+        $_SESSION['uid']    = (int)$user['id'];
+        $_SESSION['name']   = $user['login'];
+        $_SESSION['nom']    = $user['nom'];
+        $_SESSION['prenom'] = $user['prenom'];
+        $_SESSION['role']   = $user['role']; // 'Visiteur' ou 'Comptable'
+
+        $this->log("Connexion réussie pour '$username' (id={$user['id']})");
+
+        $this->redirect('/index.php/dashboard');
+    }
+
+    public function dashboard(): void {
+        if (empty($_SESSION['uid'])) $this->redirect('/index.php/');
+        $this->render('dashboard', ['title'=>'Dashboard', 'username'=>$_SESSION['name'] ?? 'Utilisateur']);
+    }
+
+    public function logout(): void {
+        $username = $_SESSION['name'] ?? 'inconnu';
+        $this->log("Déconnexion de '$username'");
+
+        $_SESSION = [];
+        if (ini_get('session.use_cookies')) {
+            $p = session_get_cookie_params();
+            setcookie(session_name(), '', time()-42000, $p['path'], $p['domain'], $p['secure'], $p['httponly']);
+        }
+        session_destroy();
+        $this->redirect('/index.php/');
+    }
+}
+ /*
 final class AuthController extends Controller
 {
     private function log(string $file, string $msg): void
@@ -129,57 +204,4 @@ final class AuthController extends Controller
     }
 }
 
-/*namespace Controllers;
-use Core\Controller;
-use Models\User;
-
-final class AuthController extends Controller {
-
-    public function login(): void {
-        if (!empty($_SESSION['uid'])) { $this->redirect('/dashboard'); }
-        $this->render('login', [
-            'title' => 'Connexion',
-            'csrf'  => $this->csrfToken(),
-            'message' => $_SESSION['flash'] ?? '',
-        ]);
-        unset($_SESSION['flash']);
-    }
-
-    public function doLogin(): void {
-        if (!$this->checkCsrf($_POST['csrf'] ?? null)) { http_response_code(400); exit('CSRF'); }
-
-        $username = trim((string)($_POST['username'] ?? ''));
-        $password = (string)($_POST['password'] ?? '');
-
-        if ($username === '' || $password === '') {
-            $_SESSION['flash'] = 'Identifiants requis';
-            $this->redirect('/');
-        }
-
-        $user = User::findByUsername($username);
-        if (!$user || !password_verify($password, $user['mdp'])) {
-            $_SESSION['flash'] = 'Mauvais identifiant ou mot de passe';
-            $this->redirect('/');
-        }
-
-        $_SESSION['uid'] = (int)$user['id'];
-        $_SESSION['name'] = $user['login'];
-        $this->redirect('/dashboard');
-    }
-
-    public function dashboard(): void {
-        if (empty($_SESSION['uid'])) $this->redirect('/');
-        $this->render('dashboard', ['title'=>'Dashboard', 'username'=>$_SESSION['name'] ?? 'Utilisateur']);
-    }
-
-    public function logout(): void {
-        $_SESSION = [];
-        if (ini_get('session.use_cookies')) {
-            $p = session_get_cookie_params();
-            setcookie(session_name(), '', time()-42000, $p['path'], $p['domain'], $p['secure'], $p['httponly']);
-        }
-        session_destroy();
-        $this->redirect('/');
-    }
-}
-*/
+*\
