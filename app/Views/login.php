@@ -117,7 +117,7 @@
             </div>
         <?php endif; ?>
 
-        <form method="post" action="/index.php/auth">
+        <form method="post" action="/index.php/login">
             <div class="form-group">
                 <label for="username">Utilisateur</label>
                 <input type="text" id="username" name="username" required autocomplete="username">
@@ -131,7 +131,9 @@
             <input type="hidden" name="csrf" value="<?= $e($csrf) ?>">
             
             <button type="submit">Se connecter</button>
+
         </form>
+            <a href="inscription"> <button type="submit">S'inscrire</button></a> 
     </div>
 
 </body>
