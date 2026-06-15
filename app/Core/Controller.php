@@ -47,7 +47,7 @@ abstract class Controller {
 
     protected function requireVisiteur(): void {
         $this->requireAuth();
-        if (($_SESSION['role'] ?? '') !== 'Visiteur') {
+        if (($_SESSION['role'] ?? '') !== 'visiteur') {
             http_response_code(403);
             exit('Accès refusé — réservé aux visiteurs.');
         }
@@ -58,6 +58,6 @@ abstract class Controller {
     }
 
     protected function isVisiteur(): bool {
-        return ($_SESSION['role'] ?? '') === 'Visiteur';
+        return ($_SESSION['role'] ?? '') === 'visiteur';
     }
 }
