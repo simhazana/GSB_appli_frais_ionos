@@ -24,7 +24,7 @@ final class FraisHorsForfait
     public static function create(string $libelle, string $montant, string $date): int
     {
         $pdo = Database::get();
-        $st  = $pdo->prepare('INSERT INTO fraisHorsForfait (libelle, montant, date) VALUES (?,?,?)');
+        $st  = $pdo->prepare('INSERT INTO fraishorsforfait (libelle, montant, date) VALUES (?,?,?)');
         $st->execute([$libelle,$montant,$date]);
         return (int)$pdo->lastInsertId(); // ajouter un id +1
     } 
@@ -34,7 +34,7 @@ final class FraisHorsForfait
    {
 
         $pdo = Database::get();
-        $st  = $pdo->prepare('UPDATE fraisHorsForfait SET libelle = ?, montant= ?, date=? WHERE id = ?');
+        $st  = $pdo->prepare('UPDATE fraishorsforfait SET libelle = ?, montant= ?, date=? WHERE id = ?');
         return $st->execute([$libelle,  $montant, $date, $id]);
 
    }
@@ -42,7 +42,7 @@ final class FraisHorsForfait
      public static function delete(int $id): bool
     {
         $pdo = Database::get();
-        $st  = $pdo->prepare('DELETE FROM fraisHorsForfait WHERE id = ?');
+        $st  = $pdo->prepare('DELETE FROM fraishorsforfait WHERE id = ?');
         return $st->execute([$id]);
     }
 }
