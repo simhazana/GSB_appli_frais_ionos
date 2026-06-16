@@ -54,7 +54,15 @@ final class FicheFrais
             WHERE f.IDvisiteur = ?
         ');
         $st->execute([$idVisiteur]);
-        return $st->fetchAll(\PDO::FETCH_ASSOC);
+    $rows = $st->fetchAll(\PDO::FETCH_ASSOC);
+
+    // Déduplication par mois
+    $unique = [];
+    foreach ($rows as $row) {
+        $key = $row['IDvisiteur'] . '_' . $row['mois'];
+        $unique[$key] = $row;
+    }
+
     }
 
     // Une fiche par visiteur + mois
