@@ -47,14 +47,14 @@
 
     <div class="topbar">
         <h1>Modifier un frais hors forfait</h1>
-        <a class="button" href="/index.php/../fraisHorsForfait">⬅ Retour à la liste</a>
+        <a class="button" href="../../fraisHorsForfait">⬅ Retour à la liste</a>
     </div>
 
     <?php if (!empty($message)): ?>
         <div class="flash"><?= htmlspecialchars($message) ?></div>
     <?php endif; ?>
 
-    <form action="/index.php/../fraisHorsForfait/<?= $fraisHorsForfait['id'] ?>/edit" method="post">
+    <form action="../../fraisHorsForfait/<?= $fraisHorsForfait['id'] ?>/edit" method="post">
 
         <div class="field">
             <label for="libelle">Libellé *</label>
