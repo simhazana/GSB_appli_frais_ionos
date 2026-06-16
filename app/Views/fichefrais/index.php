@@ -97,7 +97,7 @@ echo '<pre>' . htmlspecialchars(print_r($ficheFrais, true)) . '</pre>';
                             <?php if ($isCompta): ?>
                                 <?= htmlspecialchars((string)($fiche['nomVisiteur'] ?? $fiche['IDvisiteur'])) ?>
                             <?php else: ?>
-                                <?= htmlspecialchars($nomConnecte) ?>
+                                <?= htmlspecialchars($nomVisiteur) ?>
                             <?php endif; ?>
                         </td>
                         <td><?= htmlspecialchars((string)$fiche['mois']) ?></td>
