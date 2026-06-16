@@ -61,7 +61,7 @@
 
         <?php
         $isCompta = ($_SESSION['role'] ?? '') === 'Comptable';
-        $nomConnecte = trim(($_SESSION['prenom'] ?? '') . ' ' . ($_SESSION['nom'] ?? ''));
+        $nomConnecte = trim(($_SESSION['PRENOM'] ?? '') . ' ' . ($_SESSION['NOM'] ?? ''));
         $idConnecte  = $_SESSION['uid'] ?? '';
         ?>
 
@@ -74,7 +74,7 @@
                     <?php foreach ($visiteurs ?? [] as $v): ?>
                         <option value="<?= $v['ID'] ?>"
                             <?= ($old['visiteur'] ?? '') == $v['ID'] ? 'selected' : '' ?>>
-                            <?= htmlspecialchars($v['nom'] . ' ' . $v['prenom']) ?>
+                            <?= htmlspecialchars($v['NOM'] . ' ' . $v['PRENOM']) ?>
                         </option>
                     <?php endforeach; ?>
                 </select>
