@@ -106,7 +106,7 @@ final class FicheFraisController extends Controller
 
         if (!empty($errors)) {
             $_SESSION['errors'] = $errors;
-            $_SESSION['old']    = compact('visiteur','fraisforfait', 'quantite', 'fraishorsforfait','dateModif', 'nbrJustificatifs');
+            $_SESSION['old']    = compact('visiteur','fraisForfait', 'quantite', 'fraisHorsForfait','dateModif', 'nbrJustificatifs');
             $_SESSION['flash']  = 'Merci de corriger les erreurs.';
             $this->redirect('/index.php/fichefrais/create');
         }
