@@ -1,5 +1,6 @@
 <?php function e($s) { return htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8'); } ?>
 <?php $role = $role ?? ''; ?>
+<!-- DEBUG: role=[<?= htmlspecialchars($role) ?>] session=<?= htmlspecialchars(print_r($_SESSION, true)) ?> -->
 <!doctype html>
 <html lang="fr">
 <head>
