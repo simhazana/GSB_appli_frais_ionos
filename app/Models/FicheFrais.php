@@ -75,9 +75,9 @@ final class FicheFrais
             fhf.montant  AS montantHorsForfait,
             e.libelle    AS libelleEtat
         FROM fichefrais f
-        JOIN visiteur        v   ON f.IDvisiteur             = v.ID
-        JOIN fraishorsforfait fhf ON f.idLigneFraisHorsForfait = fhf.ID
-        JOIN etat            e   ON f.idEtat                 = e.ID
+        LEFT JOIN visiteur        v   ON f.IDvisiteur             = v.ID
+        LEFT JOIN fraishorsforfait fhf ON f.idLigneFraisHorsForfait = fhf.ID
+        LEFT JOIN etat            e   ON f.idEtat                 = e.ID
         WHERE f.IDvisiteur = :idV AND f.mois = :mois
     ');
     $st->execute(['idV' => $idvisiteur, 'mois' => $mois]);
