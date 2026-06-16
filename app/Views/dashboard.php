@@ -1,5 +1,5 @@
 <?php function e($s) { return htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8'); } ?>
-<?php $role = $_SESSION['role'] ?? ''; ?>
+<?php $role = $role ?? ''; ?>
 <!doctype html>
 <html lang="fr">
 <head>

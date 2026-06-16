@@ -107,6 +107,7 @@ final class AuthController extends Controller
             $this->render('dashboard', [
                 'title'    => 'Dashboard',
                 'username' => $_SESSION['name'] ?? 'Utilisateur',
+                'role'     => $_SESSION['role'] ?? '',
             ]);
         } catch (\Throwable $e) {
             $this->log(
