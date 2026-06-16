@@ -29,41 +29,35 @@ final class FicheFrais
 
     // Fiches d'un visiteur spécifique
     public static function findByVisiteur(int $idVisiteur): array
-    {
-        $pdo = Database::get();
-        $st  = $pdo->prepare('
-            SELECT
-                CONCAT(v.NOM, \' \', v.PRENOM) AS nomVisiteur,
-                f.IDvisiteur,
-                f.mois,
-                f.nbrJustificatifs,
-                f.montantValide,
-                f.dateModif,
-                lff.quantite,
-                ff.libelle   AS libelleForfait,
-                ff.montant   AS montantForfait,
-                fhf.libelle  AS libelleHorsForfait,
-                e.libelle    AS libelleEtat
-            FROM fichefrais f
-            JOIN visiteur         v   ON f.IDvisiteur             = v.ID
-            JOIN etat             e   ON f.idEtat                 = e.ID
-            JOIN fraishorsforfait  fhf ON f.idLigneFraisHorsForfait = fhf.ID
-            JOIN lignefraisforfait lff ON f.IDvisiteur = lff.IDvisiteur
-                                      AND f.mois       = lff.mois
-            JOIN fraisforfait      ff  ON lff.IDfraisforfait       = ff.ID
-            WHERE f.IDvisiteur = ?
-        ');
-        $st->execute([$idVisiteur]);
+{
+    $pdo = Database::get();
+    $st  = $pdo->prepare('
+        SELECT
+            CONCAT(v.NOM, \' \', v.PRENOM) AS nomVisiteur,
+            f.IDvisiteur,
+            f.mois,
+            f.nbrJustificatifs,
+            f.montantValide,
+            f.dateModif,
+            fhf.libelle AS libelleHorsForfait,
+            e.libelle   AS libelleEtat
+        FROM fichefrais f
+        JOIN visiteur        v   ON f.IDvisiteur             = v.ID
+        JOIN etat            e   ON f.idEtat                 = e.ID
+        JOIN fraishorsforfait fhf ON f.idLigneFraisHorsForfait = fhf.ID
+        WHERE f.IDvisiteur = ?
+    ');
+    $st->execute([$idVisiteur]);
     $rows = $st->fetchAll(\PDO::FETCH_ASSOC);
 
-    // Déduplication par mois
     $unique = [];
     foreach ($rows as $row) {
         $key = $row['IDvisiteur'] . '_' . $row['mois'];
         $unique[$key] = $row;
     }
 
-    }
+    return array_values($unique);
+}
 
     // Une fiche par visiteur + mois
   public static function findById(int $idvisiteur, int $mois): ?array
