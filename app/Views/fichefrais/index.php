@@ -2,7 +2,6 @@
 $role     = $_SESSION['role'] ?? '';
 $isCompta = $role === 'Comptable';
 $nomConnecte = trim(($_SESSION['prenom'] ?? '') . ' ' . ($_SESSION['nom'] ?? ''));
-echo '<pre>' . htmlspecialchars(print_r($ficheFrais, true)) . '</pre>';
 
 ?>
 <!doctype html>
