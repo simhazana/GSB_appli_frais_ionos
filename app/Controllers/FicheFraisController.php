@@ -25,8 +25,10 @@ final class FicheFraisController extends Controller
             }
         } catch (\Throwable $e) {
             error_log($e->getMessage());
-            $_SESSION['flash'] = 'Impossible de charger les fiches frais.';
-        }
+           // $_SESSION['flash'] = 'Impossible de charger les fiches frais.';
+            $_SESSION['flash'] = 'Erreur SQL : ' . $e->getMessage(); // ← modifie cette ligne
+ 
+           }
 
         try {
             $etats = \Models\Etat::findAll();
