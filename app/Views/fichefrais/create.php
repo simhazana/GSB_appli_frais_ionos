@@ -72,8 +72,8 @@
                 <select name="visiteur" id="visiteur" required>
                     <option value="">-- Choisir un visiteur --</option>
                     <?php foreach ($visiteurs ?? [] as $v): ?>
-                        <option value="<?= $v['id'] ?>"
-                            <?= ($old['visiteur'] ?? '') == $v['id'] ? 'selected' : '' ?>>
+                        <option value="<?= $v['ID'] ?>"
+                            <?= ($old['visiteur'] ?? '') == $v['ID'] ? 'selected' : '' ?>>
                             <?= htmlspecialchars($v['nom'] . ' ' . $v['prenom']) ?>
                         </option>
                     <?php endforeach; ?>
@@ -93,7 +93,7 @@
                 <option value="">-- Choisir un frais forfait --</option>
                 <?php foreach ($fraisForfaits ?? [] as $f): ?>
                     <option value="<?= $f['id'] ?>"
-                        <?= ($old['fraisforfait'] ?? '') == $f['id'] ? 'selected' : '' ?>>
+                        <?= ($old['fraisforfait'] ?? '') == $f['ID'] ? 'selected' : '' ?>>
                         <?= htmlspecialchars($f['libelle'] . ' — ' . $f['montant'] . ' €') ?>
                     </option>
                 <?php endforeach; ?>
@@ -121,7 +121,7 @@
                 <option value="">-- Choisir un frais hors forfait --</option>
                 <?php foreach ($fraisHorsForfaits ?? [] as $f): ?>
                     <option value="<?= $f['id'] ?>"
-                        <?= ($old['fraishorsforfait'] ?? '') == $f['id'] ? 'selected' : '' ?>>
+                        <?= ($old['fraishorsforfait'] ?? '') == $f['ID'] ? 'selected' : '' ?>>
                         <?= htmlspecialchars($f['libelle'] . ' — ' . $f['montant'] . ' €') ?>
                     </option>
                 <?php endforeach; ?>
