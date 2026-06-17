@@ -75,7 +75,7 @@ final class FicheFraisController extends Controller
             'message'          => $_SESSION['flash'] ?? '',
             'old'              => $_SESSION['old'] ?? [],
             'errors'           => $_SESSION['errors'] ?? [],
-            'visiteurs'        => Visiteur::findAll(),
+            'visiteurs'        => Visiteur::findAllFiche(),
             'etats'            => Etat::findAll(),
             'fraisHorsForfaits'=> FraisHorsForfait::findAll(),
             'fraisForfaits'=> FraisForfait::findAll(),

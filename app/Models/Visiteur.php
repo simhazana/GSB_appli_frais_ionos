@@ -10,10 +10,26 @@ final class Visiteur
     public static function findAll(): array
     {
         $pdo = Database::get();
-        $st  = $pdo->query('SELECT * FROM  visiteur ORDER BY id');
+        $st  = $pdo->query('SELECT id,nom,prenom,adresse,ville,cp,date_embauche,login,mdp,role FROM  visiteur ORDER BY id');
         return $st->fetchAll(); // FETCH_ASSOC déjà par défaut via Database
     }
     public static function findById(int $id): ?array
+    {
+        $pdo = Database::get();
+        $st  = $pdo->prepare('SELECT * FROM visiteur WHERE id = ?');
+        $st->execute([$id]);
+        $row = $st->fetch();
+        return $row ?: null;
+    }
+
+    
+    public static function findAllFiche(): array
+    {
+        $pdo = Database::get();
+        $st  = $pdo->query('SELECT * FROM  visiteur ORDER BY id');
+        return $st->fetchAll(); // FETCH_ASSOC déjà par défaut via Database
+    }
+    public static function findByIdFiche(int $id): ?array
     {
         $pdo = Database::get();
         $st  = $pdo->prepare('SELECT * FROM visiteur WHERE ID = ?');
@@ -21,6 +37,7 @@ final class Visiteur
         $row = $st->fetch();
         return $row ?: null;
     }
+
 
      public static function create(
         string $nom,
