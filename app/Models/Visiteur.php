@@ -16,7 +16,7 @@ final class Visiteur
     public static function findById(int $id): ?array
     {
         $pdo = Database::get();
-        $st  = $pdo->prepare('SELECT * FROM visiteur WHERE id = ?');
+        $st  = $pdo->prepare('SELECT * FROM visiteur WHERE ID = ?');
         $st->execute([$id]);
         $row = $st->fetch();
         return $row ?: null;
