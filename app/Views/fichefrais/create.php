@@ -61,7 +61,7 @@
 
         <?php
         $isCompta = ($_SESSION['role'] ?? '') === 'Comptable';
-        $nomConnecte = trim(($_SESSION['PRENOM'] ?? '') . ' ' . ($_SESSION['NOM'] ?? ''));
+        $nomConnecte = trim(($_SESSION['prenom'] ?? '') . ' ' . ($_SESSION['nom'] ?? ''));
         $idConnecte  = $_SESSION['uid'] ?? '';
         ?>
 
