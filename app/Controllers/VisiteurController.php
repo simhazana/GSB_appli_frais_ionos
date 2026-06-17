@@ -217,7 +217,8 @@ public function edit($id): void
     'ville' => $visiteur['VILLE'],
     'cp' => $visiteur['CP'],
     'date_embauche' => $visiteur['DATE_EMBAUCHE'],
-    'login' => $visiteur['LOGIN']
+    'login' => $visiteur['LOGIN'],
+    'role' => $visiteur['ROLE']
         ];
 
     $this->render('visiteur/edit', [
@@ -244,6 +245,7 @@ public function update($id): void
         $cp = trim($_POST['cp'] ?? '');
         $date_embauche = trim($_POST['date_embauche'] ?? '');
         $login = trim($_POST['login'] ?? '');
+        $role = trim($_POST['role'] ?? '');
 
         $errors = [];
 
@@ -274,6 +276,9 @@ public function update($id): void
         if ($login === '') {
             $errors['login'] = 'Le login est obligatoire.';
         }
+         if ($role === '') {
+            $errors['role'] = 'Le role est obligatoire.';
+        }
 
         if ($errors) {
             $_SESSION['errors'] = $errors;
@@ -284,7 +289,8 @@ public function update($id): void
                 'ville' => $ville,
                 'cp' => $cp,
                 'date_embauche' => $date_embauche,
-                'login' => $login
+                'login' => $login,
+                'role' => $role
                 ];
 
             $_SESSION['flash'] = "Merci de corriger les erreurs.";
@@ -300,7 +306,8 @@ public function update($id): void
                 $ville,
                 $cp,
                 $date_embauche,
-                $login
+                $login,
+                $role
                 );
 
             $_SESSION['flash'] = "Visiteur modifié avec succès.";
