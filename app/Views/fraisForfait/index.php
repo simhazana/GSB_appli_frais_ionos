@@ -144,7 +144,9 @@
         <a class="button" href="/index.php/logout">Se déconnecter</a>
     </div>
 
+    <?php if (($_SESSION['role'] ?? '') === 'Comptable'): ?>
     <a class="button" href="/index.php/fraisForfait/create">➕ Ajouter un frais forfait</a>
+    <?php endif; ?>
 
     <?php if (!empty($message)): ?>
         <div class="flash"><?= htmlspecialchars($message) ?></div>
