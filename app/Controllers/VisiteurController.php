@@ -218,7 +218,7 @@ public function edit($id): void
     'cp' => $visiteur['CP'],
     'date_embauche' => $visiteur['DATE_EMBAUCHE'],
     'login' => $visiteur['LOGIN'],
-    'role' => $visiteur['ROLE']
+    'role' => $visiteur['role']
         ];
 
     $this->render('visiteur/edit', [
