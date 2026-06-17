@@ -40,7 +40,7 @@
 
     <div class="topbar">
         <h1>Fiche frais de <?= htmlspecialchars($ficheFrais['nomVisiteur'] ?? '') ?></h1>
-        <a class="button" href="../../fichefrais">⬅ Retour</a>
+        <a class="button" href="/index.php/fichefrais">⬅ Retour</a>
     </div>
 
     <?php if (!empty($message)): ?>

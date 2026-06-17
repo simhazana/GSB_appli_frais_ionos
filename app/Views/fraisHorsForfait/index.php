@@ -42,8 +42,8 @@ $isCompta = $role === 'Comptable';
 <body>
     <div class="topbar">
         <h1 style="margin:0;">Liste des Frais hors forfaits</h1>
-        <a class="button" href="./dashboard">Dashboard</a>
-        <a class="button" href="./logout">Se déconnecter</a>
+        <a class="button" href="/index.php/dashboard">Dashboard</a>
+        <a class="button" href="/index.php/logout">Se déconnecter</a>
     </div>
 
     <a class="button add" href="/index.php/fraisHorsForfait/create">➕ Ajouter un frais hors forfait</a>

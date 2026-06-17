@@ -38,7 +38,7 @@
 
     <div class="topbar">
         <h1>Détail de l'état</h1>
-        <a class="button" href="../etat">⬅ Retour à la liste</a>
+        <a class="button" href="/index.php/etat">⬅ Retour à la liste</a>
     </div>
 
     <?php if (!empty($message)): ?>
@@ -60,7 +60,7 @@
 
     <?php else: ?>
         <p style="color:#888; font-style:italic;">État introuvable.</p>
-        <a class="button" href="../etat">Retour à la liste</a>
+        <a class="button" href="/index.php/etat">Retour à la liste</a>
     <?php endif; ?>
 
 </div>

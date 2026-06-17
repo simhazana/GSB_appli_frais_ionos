@@ -140,14 +140,14 @@
 
         <div class="topbar">
             <h1>Modification de la fiche frais</h1>
-            <a class="button" href="/index.php/../fichefrais">⬅ Retour à la liste</a>
+            <a class="button" href="/index.php/fichefrais">⬅ Retour à la liste</a>
         </div>
 
         <?php if (!empty($message)): ?>
             <div class="flash"><?= htmlspecialchars($message) ?></div>
         <?php endif; ?>
 
-<form action="/PPE-main/public/fichefrais/<?= htmlspecialchars($ficheFrais['IDvisiteur']) ?>/<?= htmlspecialchars($ficheFrais['mois']) ?>/edit" method="post">
+<form action="/index.php/fichefrais/<?= htmlspecialchars($ficheFrais['IDvisiteur']) ?>/<?= htmlspecialchars($ficheFrais['mois']) ?>/edit" method="post">
             <div class="card">
                 <div class="card-header">Informations de la fiche</div>
 

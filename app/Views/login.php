@@ -133,7 +133,7 @@
             <button type="submit">Se connecter</button>
 
         </form>
-            <a href="inscription"> <button type="submit">S'inscrire</button></a> 
+            <a href="/index.php/inscription"> <button type="submit">S'inscrire</button></a> 
     </div>
 
 </body>

@@ -47,14 +47,14 @@
 
     <div class="topbar">
         <h1>Modifier un état</h1>
-        <a class="button" href="../../etat">⬅ Retour à la liste</a>
+        <a class="button" href="/index.php/etat">⬅ Retour à la liste</a>
     </div>
 
     <?php if (!empty($message)): ?>
         <div class="flash"><?= htmlspecialchars($message) ?></div>
     <?php endif; ?>
 
-    <form action="../../etat/<?= $etat['id'] ?>/edit" method="post">
+    <form action="/index.php/etat/<?= $etat['id'] ?>/edit" method="post">
 
         <div class="field">
             <label for="libelle">Libellé *</label>

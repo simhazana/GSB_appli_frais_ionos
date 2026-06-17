@@ -38,7 +38,7 @@
 
     <div class="topbar">
         <h1>Détail du visiteur</h1>
-        <a class="button" href="../visiteur">⬅ Retour à la liste</a>
+        <a class="button" href="/index.php/visiteur">⬅ Retour à la liste</a>
     </div>
 
     <?php if (!empty($message)): ?>
@@ -88,7 +88,7 @@
 
     <?php else: ?>
         <p style="color:#888; font-style:italic;">Visiteur introuvable.</p>
-        <a class="button" href="../visiteur">Retour à la liste</a>
+        <a class="button" href="/index.php/visiteur">Retour à la liste</a>
     <?php endif; ?>
 
 </div>

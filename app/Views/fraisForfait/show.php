@@ -38,7 +38,7 @@
 
     <div class="topbar">
         <h1>Détail du frais forfait</h1>
-        <a class="button" href="../fraisForfait">⬅ Retour à la liste</a>
+        <a class="button" href="/index.php/fraisForfait">⬅ Retour à la liste</a>
     </div>
 
     <?php if (!empty($message)): ?>
@@ -64,7 +64,7 @@
 
     <?php else: ?>
         <p style="color:#888; font-style:italic;">Frais forfait introuvable.</p>
-        <a class="button" href="../fraisForfait">Retour à la liste</a>
+        <a class="button" href="/index.php/fraisForfait">Retour à la liste</a>
     <?php endif; ?>
 
 </div>

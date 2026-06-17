@@ -46,15 +46,15 @@
 <div class="container">
     <div class="topbar">
         <h1>Créer un frais forfait</h1>
-        <a class="button" href="../dashboard">Dashboard</a>
-        <a class="button" href="../fraisForfait">Retour</a>
+        <a class="button" href="/index.php/dashboard">Dashboard</a>
+        <a class="button" href="/index.php/fraisForfait">Retour</a>
     </div>
 
     <?php if (!empty($message)): ?>
         <div class="flash"><?= htmlspecialchars($message) ?></div>
     <?php endif; ?>
 
-    <form action="../fraisForfait/create" method="post">
+    <form action="/index.php/fraisForfait/create" method="post">
 
         <div class="field">
             <label for="libelle">Libellé *</label>
@@ -76,7 +76,7 @@
 
         <div class="form-actions">
             <button type="submit">Enregistrer</button>
-            <a class="button" href="../fraisForfait">Annuler</a>
+            <a class="button" href="/index.php/fraisForfait">Annuler</a>
         </div>
 
     </form>

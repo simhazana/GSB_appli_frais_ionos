@@ -48,7 +48,7 @@
     <div class="topbar">
         <h1>Créer un état</h1>
         <a class="button" href="/index.php/dashboard">Dashboard</a>
-        <a class="button" href="../etat">Retour</a>
+        <a class="button" href="/index.php/etat">Retour</a>
     </div>
 
     <?php if (!empty($message)): ?>

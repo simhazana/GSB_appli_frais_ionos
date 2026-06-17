@@ -140,8 +140,8 @@
 <body>
     <div class="topbar">
         <h1 style="margin:0;">Liste des Visiteurs</h1>
-        <a class="button" href="./dashboard">Dashboard</a>
-        <a class="button" href="./logout">Se déconnecter</a>
+        <a class="button" href="/index.php/dashboard">Dashboard</a>
+        <a class="button" href="/index.php/logout">Se déconnecter</a>
     </div>
 
     <a class="button" href="/index.php/visiteur/create">➕ Ajouter un visiteur</a>

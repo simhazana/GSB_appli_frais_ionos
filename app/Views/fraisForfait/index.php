@@ -140,11 +140,11 @@
 <body>
     <div class="topbar">
         <h1 style="margin:0;">Liste des Frais forfaits</h1>
-        <a class="button" href="./dashboard">Dashboard</a>
-        <a class="button" href="./logout">Se déconnecter</a>
+        <a class="button" href="/index.php/dashboard">Dashboard</a>
+        <a class="button" href="/index.php/logout">Se déconnecter</a>
     </div>
 
-    <a class="button" href="./fraisForfait/create">➕ Ajouter un frais forfait</a>
+    <a class="button" href="/index.php/fraisForfait/create">➕ Ajouter un frais forfait</a>
 
     <?php if (!empty($message)): ?>
         <div class="flash"><?= htmlspecialchars($message) ?></div>
@@ -172,8 +172,8 @@
                         <?php if (($_SESSION['role'] ?? '') === 'Comptable'): ?>             
                         <td class="actions">
 
-                            <a href="./fraisForfait/<?= urlencode($frais['id']) ?>/edit">Modifier</a>
-                             <form action="./fraisForfait/<?= urlencode($frais['id']) ?>/delete"
+                            <a href="/index.php/fraisForfait/<?= urlencode($frais['id']) ?>/edit">Modifier</a>
+                             <form action="/index.php/fraisForfait/<?= urlencode($frais['id']) ?>/delete"
                              method="post"
                              style="display:inline"
                              onsubmit="return confirm('Supprimer ce frais forfait ? Cette action est définitive.');">

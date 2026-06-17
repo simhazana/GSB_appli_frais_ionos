@@ -47,8 +47,8 @@
     <div class="topbar">
         <h1><?= ($inscription ?? false) ? 'Inscription' : 'Créer un comptable' ?></h1>
         <?php if (!($inscription ?? false)): ?>
-        <a class="button" href="../dashboard">Dashboard</a>
-        <a class="button" href="../visiteur">Retour</a>
+        <a class="button" href="/index.php/dashboard">Dashboard</a>
+        <a class="button" href="/index.php/visiteur">Retour</a>
         <?php endif; ?>
     </div>
 
@@ -56,7 +56,7 @@
         <div class="flash"><?= htmlspecialchars($message) ?></div>
     <?php endif; ?>
 
-    <form action="<?= ($inscription ?? false) ? './inscription' : '../visiteur/create' ?>" method="post">
+    <form action="<?= ($inscription ?? false) ? '/index.php/inscription' : '/index.php/visiteur/create' ?>" method="post">
 
 
         <div class="field">
@@ -146,9 +146,9 @@
         <div class="form-actions">
     <button type="submit">Enregistrer</button>
     <?php if ($inscription ?? false): ?>
-        <a class="button" href="./">Retour à la connexion</a>
+        <a class="button" href="/index.php/">Retour à la connexion</a>
     <?php else: ?>
-        <a class="button" href="../visiteur">Annuler</a>
+        <a class="button" href="/index.php/visiteur">Annuler</a>
     <?php endif; ?>
 </div>
 

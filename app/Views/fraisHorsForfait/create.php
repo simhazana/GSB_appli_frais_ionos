@@ -46,8 +46,8 @@
 <div class="container">
     <div class="topbar">
         <h1>Créer un frais hors forfait</h1>
-        <a class="button" href="../dashboard">Dashboard</a>
-        <a class="button" href="../fraisHorsForfait">Retour</a>
+        <a class="button" href="/index.php/dashboard">Dashboard</a>
+        <a class="button" href="/index.php/fraisHorsForfait">Retour</a>
     </div>
 
     <?php if (!empty($message)): ?>
