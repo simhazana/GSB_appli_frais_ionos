@@ -10,7 +10,7 @@ final class VisiteurController extends Controller
     {
         // verifier si connecter sinon rediriger vers la page de connexion
         if (empty($_SESSION['uid'])) {
-            $this->redirect('/');
+            $this->redirect('/index.php');
         }
 
         try {
@@ -32,7 +32,7 @@ final class VisiteurController extends Controller
 
  public function show($id): void
 {
-    if (empty($_SESSION['uid'])) $this->redirect('/');
+    if (empty($_SESSION['uid'])) $this->redirect('/index.php');
 
     $id = (int)$id;
 
@@ -41,7 +41,7 @@ final class VisiteurController extends Controller
         if (!$visiteur) {
             http_response_code(404);
             $_SESSION['flash'] = 'Visiteur introuvable.';
-            $this->redirect('/visiteur');
+            $this->redirect('/index.php/visiteur');
             return;
         }
     } catch (\Throwable $e) {
@@ -167,7 +167,7 @@ final class VisiteurController extends Controller
             'role'=> $role
             ];
         $_SESSION['flash']  = 'Merci de corriger les erreurs du formulaire.';
-        $this->redirect('/visiteur/create');
+        $this->redirect('/index.php/visiteur/create');
     }
 
     try {
@@ -183,10 +183,10 @@ final class VisiteurController extends Controller
             $role
         );
         $_SESSION['flash'] = 'visiteur créé avec succès.';
-        $this->redirect('/visiteur/' . $id);
+        $this->redirect('/index.php/visiteur/' . $id);
     } catch (\Throwable $e) {
         $_SESSION['flash'] = 'Impossible de créer le visiteur.';
-        $this->redirect('/visiteur');
+        $this->redirect('/index.php/visiteur');
     }
 }
 
@@ -194,7 +194,7 @@ final class VisiteurController extends Controller
 // ---------- EDIT (GET) ----------
 public function edit($id): void
 {
-    if (empty($_SESSION['uid'])) $this->redirect('/');
+    if (empty($_SESSION['uid'])) $this->redirect('/index.php');
 
     $id = (int)$id;
 
@@ -202,11 +202,11 @@ public function edit($id): void
         $visiteur = \Models\Visiteur::findById($id);
         if (!$visiteur) {
             $_SESSION['flash'] = "Visiteur introuvable.";
-            $this->redirect('/visiteur');
+            $this->redirect('/index.php/visiteur');
         }
     } catch (\Throwable $e) {
         $_SESSION['flash'] = "Erreur lors du chargement du visiteur.";
-        $this->redirect('/visiteur');
+        $this->redirect('/index.php/visiteur');
     }
 
     // remplissage auto
@@ -316,7 +316,7 @@ public function update($id): void
 public function delete($id): void
 {
     if (empty($_SESSION['uid'])) {
-        $this->redirect('/');
+        $this->redirect('/index.php');
     }
 
     $id = (int)$id;
@@ -334,7 +334,7 @@ public function delete($id): void
         $_SESSION['flash'] = "Erreur lors de la suppression du visiteur.";
     }
 
-    $this->redirect('/visiteur');
+    $this->redirect('/index.php/visiteur');
 }
 
 
