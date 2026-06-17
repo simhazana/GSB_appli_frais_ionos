@@ -39,7 +39,7 @@ final class Visiteur
     }
 
 
-     public static function create(
+      public static function create(
         string $nom,
         string $prenom,
         string $adresse,
@@ -52,12 +52,14 @@ final class Visiteur
         ): int
     {
         $pdo = Database::get();
+        $mdp = password_hash($mdp, PASSWORD_DEFAULT);
         $st  = $pdo->prepare('INSERT INTO visiteur 
         (nom,prenom,adresse,ville,cp,date_embauche,login,mdp,role) 
         VALUES (?,?,?,?,?,?,?,?,?)');
         $st->execute([$nom, $prenom, $adresse, $ville, $cp, $date_embauche, $login, $mdp, $role]);
         return (int)$pdo->lastInsertId();
     }
+
 
     public static function update(
         int $id,
