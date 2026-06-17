@@ -9,7 +9,7 @@ final class User {
     //EX VISITEUR id: 4 mdp= hash_pwd_4
     //EX VISITEUR id: 5 mdp= hash_pwd_5
     public static function findByUsername(string $u): ?array {
-        $st = Database::get()->prepare('SELECT id, login, mdp, role FROM visiteur WHERE login = :l');
+        $st = Database::get()->prepare('SELECT id,nom, prenom, login, mdp, role FROM visiteur WHERE login = :l');
         $st->execute([':l'=>$u]);
         $row = $st->fetch(\PDO::FETCH_ASSOC);
         return $row ?: null;
