@@ -47,14 +47,14 @@
 
     <div class="topbar">
         <h1>Modifier un visiteur</h1>
-        <a class="button" href="../../visiteur">⬅ Retour à la liste</a>
+        <a class="button" href="/index.php/visiteur">⬅ Retour à la liste</a>
     </div>
 
     <?php if (!empty($message)): ?>
         <div class="flash"><?= htmlspecialchars($message) ?></div>
     <?php endif; ?>
 
-    <form action="../../visiteur/<?= $visiteur['ID'] ?>/edit" method="post">
+    <form action="/index.php/visiteur/<?= $visiteur['ID'] ?>/edit" method="post">
 
         <div class="field">
             <label for="nom">Nom *</label>
@@ -133,7 +133,7 @@
 
         <div class="form-actions">
             <button type="submit">Enregistrer</button>
-            <a class="button" href="../../visiteur/<?= $visiteur['ID'] ?>">Annuler</a>
+            <a class="button" href="/index.php/visiteur/<?= $visiteur['ID'] ?>">Annuler</a>
         </div>
 
     </form>
