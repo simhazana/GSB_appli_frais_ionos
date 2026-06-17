@@ -135,7 +135,7 @@
             <label for="role">Rôle *</label>
             <select name="role" id="role" required>
                 <option value="">-- Choisir un rôle --</option>
-                <option value="Visiteur" <?= ($old['role'] ?? '') === 'Visiteur' ? 'selected' : '' ?>>Visiteur</option>
+                <option value="visiteur" <?= ($old['role'] ?? '') === 'Visiteur' ? 'selected' : '' ?>>Visiteur</option>
                 <option value="Comptable" <?= ($old['role'] ?? '') === 'Comptable' ? 'selected' : '' ?>>Comptable</option>
             </select>
             <?php if (!empty($errors['role'])): ?>
